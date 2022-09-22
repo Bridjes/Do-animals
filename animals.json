@@ -1,0 +1,8 @@
+{
+    "lion": "predators",
+    "tiger": "predators",
+    "crocodile": "predators",
+    "antelope": "herbivores",
+    "zebra": "herbivores",
+    "giraffe": "herbivores"
+}
