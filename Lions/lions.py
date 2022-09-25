@@ -1,8 +1,8 @@
-from classes import Animals
+from classes import Animal
 import json
 import random
 
-class Lion(Animals):
+class Lion(Animal):
     def __init__(self, name = "lion", sex = "man" if random.randint(0, 1) == 1 else "woman", age = 0):
         super().__init__(name, sex)
         with open("Lions/lionsNames.json", encoding="utf-8") as f:

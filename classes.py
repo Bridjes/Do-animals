@@ -1,7 +1,7 @@
 import json
-import random
+from abc import ABC, abstractmethod
 
-class Animals:
+class Animal(ABC):
     def __init__(self, name, sex):
         self._name = name        # название  (доступен только в этом и дочерних классах)
         self._sex = sex          # пол (доступен только в этом и дочерних классах_
@@ -13,9 +13,9 @@ class Animals:
         print(f"Появился {self._name} пола {self._sex}, cемейства: {self._kind}")
 
     #вывести инфу по животному
+    @abstractmethod
     def ShowInfo(self):
-        print(f"{self._name}, пол: {self._sex}, тип питания: {self._kind}, статус жизни: {self.__alive}")
-
+        pass
     #съесть кого-то
     def eating(self, Animal):
         if self._kind == "predators" and Animal._kind == "herbivores":
@@ -23,16 +23,9 @@ class Animals:
             Animal.__alive = False
 
     #спариться
+    @abstractmethod
     def pairing(self, Animal):
-        if self._name == Animal._name and self._sex != Animal._sex:
-            n = random.randint(1, 2)
-            sex = None
-            if n == 1:
-                sex = "man"
-            else:
-                sex = "woman"
-            print("а вот и киндер подъехал")
-            return Animals(self._name, sex)
+        pass
 
     # погибнуть
     def __del__(self):
