@@ -3,28 +3,28 @@ import random
 
 class Animals:
     def __init__(self, name, sex):
-        self.name = name        # название
-        self.sex = sex          # пол
-        self.alive = True       # статус жизни
+        self._name = name        # название  (доступен только в этом и дочерних классах)
+        self._sex = sex          # пол (доступен только в этом и дочерних классах_
+        self._alive = True      # статус жизни (доступен только внутри этого класса)
 
         with open("animals.json") as animal:
             animals = json.load(animal)
-            self.kind = animals[name]       # тип питания
-        print(f"Появился {self.name} пола {self.sex}, cемейства: {self.kind}")
+            self._kind = animals[name]       # тип питания
+        print(f"Появился {self._name} пола {self._sex}, cемейства: {self._kind}")
 
     #вывести инфу по животному
     def ShowInfo(self):
-        print(f"{self.name}, пол: {self.sex}, тип питания: {self.kind}, статус: {self.alive}")
+        print(f"{self._name}, пол: {self._sex}, тип питания: {self._kind}, статус жизни: {self.__alive}")
 
     #съесть кого-то
     def eating(self, Animal):
-        if self.kind == "predators" and Animal.kind == "herbivores":
-            print(f"{self.name} съел {Animal.name}")
-            Animal.alive = False
+        if self._kind == "predators" and Animal._kind == "herbivores":
+            print(f"{self._name} съел {Animal._name}")
+            Animal.__alive = False
 
     #спариться
     def pairing(self, Animal):
-        if self.name == Animal.name and self.sex != Animal.sex:
+        if self._name == Animal._name and self._sex != Animal._sex:
             n = random.randint(1, 2)
             sex = None
             if n == 1:
@@ -32,8 +32,8 @@ class Animals:
             else:
                 sex = "woman"
             print("а вот и киндер подъехал")
-            return Animals(self.name, sex)
+            return Animals(self._name, sex)
 
     # погибнуть
     def __del__(self):
-        print(f"{self.name}, погиб во имя великой, но никому не понятной, цели")
+        print(f"{self._name}, погиб во имя великой, но никому не понятной, цели")
